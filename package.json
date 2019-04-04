@@ -1,0 +1,19 @@
+{
+  "name": "latishas_blog_site",
+  "version": "1.0.0",
+  "description": "A full stack blog site built in node,js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TishG/latishas_blog_site.git"
+  },
+  "author": "LG",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TishG/latishas_blog_site/issues"
+  },
+  "homepage": "https://github.com/TishG/latishas_blog_site#readme"
+}
