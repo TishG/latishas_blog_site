@@ -1,0 +1,25 @@
+main {
+    margin-top: 100px;
+    img {
+        width: 300px;
+    }
+}
+
+i.icon.coffee {
+    font-size: 1.5em;
+}
+
+
+#new-form-container {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    form {
+        width: 900px;
+        align-self: center;
+    }
+    h1 {
+        align-self: center;
+    }
+
+}

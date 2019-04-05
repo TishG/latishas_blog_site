@@ -1,0 +1,25 @@
+<% include partials/head %>
+<% include partials/navbar %>
+
+<main id="new-form-container" class="ui container">
+
+    <h1>New Blog</h1>
+    <form class="ui form" action="/blogs" method="POST">
+        <div class="field">
+          <label>Title: </label>
+          <input type="text" name="blog[title]" placeholder="Enter Title">
+        </div>
+        <div class="field">
+          <label>Image Url: </label>
+          <input type="text" name="blog[image]" placeholder="Enter Image Url">
+        </div>
+        <div class="field">
+           <label>Body: </label>
+           <textarea name="blog[body]" placeholder="Enter Post"></textarea> 
+        </div>
+        <button class="ui inverted violet button" type="submit">Submit</button>
+      </form>
+
+</main>
+
+<% include partials/footer %>

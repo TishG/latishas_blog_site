@@ -1,0 +1,20 @@
+<% include partials/head %>
+
+<% include partials/navbar %>
+
+<main id="index-container" class="ui container">
+    <h2>Blogs</h2>
+    <% blogs.map(blog => { %>
+        <section>  
+            <h3><%= blog.title %> </h3>
+            <img class="materialBoxed" src="<%= blog.image %>" alt="<%= blog.title %>">
+            <p><%= blog.body %></p>
+            <p><%= blog.created %></p>
+        </section>
+    <% })%>
+
+</main>
+
+<% include partials/footer %>
+
+
