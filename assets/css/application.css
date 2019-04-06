@@ -44,6 +44,10 @@ i.icon.coffee {
       align-self: center;
 }
 
+#index-container {
+  margin: 20px;
+}
+
 #index-container h2 {
   text-align: center;
 }
@@ -56,12 +60,26 @@ i.icon.coffee {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+}
+
+#blog-container h3 {
+  width: 200px;
 }
 
 #right-segment {
   margin-left: 20px;
+}
+
+#edit-delete-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 /*# sourceMappingURL=application.css.map */

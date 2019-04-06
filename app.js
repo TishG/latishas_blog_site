@@ -2,18 +2,13 @@ const express = require("express");
       app = express();
       bodyParser = require("body-parser");
       methodOverride = require("method-override");
+      expressSanitizer = require("express-sanitizer");
       path = require("path");
       port = process.env.PORT || 3000;
       mongoose = require("mongoose");
       dotenv = require("dotenv").config();     
       URI = `mongodb+srv://dbUser:${process.env.dbPassword}@latishablogsite-3vxtw.mongodb.net/test?retryWrites=true`
       mongoose.connect(URI, { useNewUrlParser: true } );
-
-    //Blog
-        //title
-        //image
-        //body
-        //created
 
     const blogSchema = new mongoose.Schema({
         title: String,
@@ -27,18 +22,12 @@ const express = require("express");
 
     const Blog = mongoose.model("Blog", blogSchema);
 
-    // Blog.create({
-    //     title: "Test Blog",
-    //     image: "https://images.unsplash.com/photo-1553530978-140ea4b72092?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60",
-    //     body: "Hey, this is my first blog post"
-    // }, (err, blog) => {
-    //     if(err) console.log(err);
-    //     else console.log(" A new document has been created", blog);
-    // })
-
       app.set("view engine", "ejs");
       app.use(bodyParser.urlencoded({extended: true}));
+      //must go after bodeParser
+      app.use(expressSanitizer());
       app.use(express.static(__dirname + "/assets"));
+      //utilized to be able to use "PUT" and "DELETE"
       app.use(methodOverride("_method"));
 
       app.get("/", (req, res, next) => {
@@ -60,6 +49,9 @@ const express = require("express");
 
       //create blog post
       app.post("/blogs", (req, res, next) => {
+          console.log(req.body);
+          req.body.blog.body = req.sanitize(req.body.blog.body);
+          console.log("after ", req.body);
           Blog.create(req.body.blog, (err, newBlog) => {
               if(err) console.log(err);
               else res.redirect("/blogs");
@@ -68,35 +60,48 @@ const express = require("express");
       });
 
       app.get("/blogs/:id", (req, res, next) => {
-          Blog.findById(req.params.id, (err, blog) => {
+          Blog.findById(req.params.id, (err, foundBlog) => {
               if(err) { 
                 console.log(err);
                 res.redirect("/blogs");
               }
-              else res.render("show", {blog: blog});
-              console.log("Found blog! ", blog);
+              else res.render("show", {blog: foundBlog});
+              console.log("Found blog!");
           })
       });
 
       //edit route
       app.get("/blogs/:id/edit", (req, res, next) => {
-        Blog.findById(req.params.id, (err, blog) => {
+        Blog.findById(req.params.id, (err, foundBlog) => {
             if(err) {
                 console.log(err);
                 res.redirect("/blogs");
             }
-            res.render("edit", {blog: blog});
+            res.render("edit", {blog: foundBlog});
         })
       })
 
       //update route
       app.put("/blogs/:id", (req, res, next) => {
+          req.body.blog.body = req.sanitize(req.body.blog.body);
           Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, foundBlog) => {
               if(err) {
                   res.redirect("/blogs");
                   console.log(err);
               } 
-              else res.redirect(`/blogs/${req.params.id}`)
+              else res.redirect(`/blogs/${req.params.id}`);
+              console.log("...successfully deleted blog...")
+          })
+      })
+
+      app.delete("/blogs/:id", (req, res, next) => {
+          Blog.findByIdAndDelete(req.params.id, (err) => {
+              if(err) {
+                  console.log(err);
+                  res.redirect("/blogs");
+              }
+              res.redirect("/blogs");
+              console.log("...successfully deleted blog...")
           })
       })
 
