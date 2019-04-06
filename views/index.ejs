@@ -1,7 +1,8 @@
 <% include partials/head %>
 
-<main id="index-container" class="ui container segments">
-    <h2 class="ui header">Latisha's Blogs</h2>
+<main>
+<h2 class="ui header centered">Latisha's Blogs</h2>
+<section id="index-container" class="ui container segments">
     <% blogs.map(blog => { %>
         <section id="blog-container" class="ui segment">  
             <section id="left-segment">
@@ -17,7 +18,7 @@
             </section>
         </section>
     <% })%>
-
+</section>
 </main>
 
 <% include partials/footer %>
