@@ -1,6 +1,7 @@
 const express = require("express");
       app = express();
       bodyParser = require("body-parser");
+      methodOverride = require("method-override");
       path = require("path");
       port = process.env.PORT || 3000;
       mongoose = require("mongoose");
@@ -38,6 +39,7 @@ const express = require("express");
       app.set("view engine", "ejs");
       app.use(bodyParser.urlencoded({extended: true}));
       app.use(express.static(__dirname + "/assets"));
+      app.use(methodOverride("_method"));
 
       app.get("/", (req, res, next) => {
           res.redirect("/blogs");
@@ -76,7 +78,27 @@ const express = require("express");
           })
       });
 
-    
+      //edit route
+      app.get("/blogs/:id/edit", (req, res, next) => {
+        Blog.findById(req.params.id, (err, blog) => {
+            if(err) {
+                console.log(err);
+                res.redirect("/blogs");
+            }
+            res.render("edit", {blog: blog});
+        })
+      })
+
+      //update route
+      app.put("/blogs/:id", (req, res, next) => {
+          Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, foundBlog) => {
+              if(err) {
+                  res.redirect("/blogs");
+                  console.log(err);
+              } 
+              else res.redirect(`/blogs/${req.params.id}`)
+          })
+      })
 
       app.listen(port, (err) => {
         if(err) console.log(err);
