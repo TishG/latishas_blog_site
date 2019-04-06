@@ -17,7 +17,6 @@ i.icon.coffee {
     font-size: 1.5em;
 }
 
-
 #new-form-container {
     justify-content: center;
     display: flex;
@@ -35,15 +34,23 @@ i.icon.coffee {
     h2 {
         text-align: center;
     }
+    margin: 20px;
 }
 
 #blog-container {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: left;
+    h3 {
+        width: 200px;
+    }
 }
 
 #right-segment {
     margin-left: 20px;
 }
 
+#edit-delete-container {
+    display: flex;
+    flex-direction: row;
+}
