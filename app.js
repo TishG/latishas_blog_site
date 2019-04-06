@@ -63,7 +63,18 @@ const express = require("express");
               else res.redirect("/blogs");
               console.log("new log post created: ", newBlog);
           })
-      })
+      });
+
+      app.get("/blogs/:id", (req, res, next) => {
+          Blog.findById(req.params.id, (err, blog) => {
+              if(err) { 
+                console.log(err);
+                res.redirect("/blogs");
+              }
+              else res.render("show", {blog: blog});
+              console.log("Found blog! ", blog);
+          })
+      });
 
     
 

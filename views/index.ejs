@@ -2,14 +2,21 @@
 
 <% include partials/navbar %>
 
-<main id="index-container" class="ui container">
+<main id="index-container" class="ui container segments">
     <h2>Blogs</h2>
     <% blogs.map(blog => { %>
-        <section>  
+        <section id="blog-container" class="ui segment">  
+            <section id="left-segment">
             <h3><%= blog.title %> </h3>
-            <img class="materialBoxed" src="<%= blog.image %>" alt="<%= blog.title %>">
-            <p><%= blog.body %></p>
-            <p><%= blog.created %></p>
+            <section class="ui image small">
+                <img class="materialBoxed left floated" src="<%= blog.image %>" alt="<%= blog.title %>">
+            </section>
+            </section>
+            <section id="right-segment">
+                <p><%= blog.created.toDateString() %></p>
+                <p><%- blog.body.substring(0,100) %>...</p>
+                <a href="/blogs/<%= blog._id %>" class="ui inverted purple button">Read More</a>
+            </section>
         </section>
     <% })%>
 

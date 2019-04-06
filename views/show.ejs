@@ -1,0 +1,19 @@
+<!-- title: String,
+image: String,
+body: String,
+created: {
+    type: Date,
+    default: Date.now
+} -->
+<% include partials/head %>
+<% include partials/navbar %>
+
+<!-- styling not working in application.scss, applying styles inline -->
+<main id="show-container" class="ui main text container segment" style="display: flex; flex-direction: column; align-items:center;">
+        <h1 class="ui header"><%= blog.title %></h1>
+        <img  class="ui large image" src="<%= blog.image %>" alt="<%= blog.title %>">
+        <p><%= blog.created.toDateString() %></p>
+        <p><%- blog.body %></p>
+</main>
+
+<% include partials/footer %>

@@ -1,5 +1,13 @@
+body {
+  padding-top: 75px;
+}
+
+p {
+  line-height: 2em;
+}
+
 main {
-  margin-top: 100px;
+  padding-top: 50px;
 }
 
 main img {
@@ -34,5 +42,26 @@ i.icon.coffee {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
+}
+
+#index-container h2 {
+  text-align: center;
+}
+
+#blog-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#right-segment {
+  margin-left: 20px;
 }
 /*# sourceMappingURL=application.css.map */

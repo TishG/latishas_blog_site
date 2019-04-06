@@ -1,5 +1,13 @@
+body {
+    padding-top: 75px;
+}
+
+p {
+    line-height: 2em;
+}
+
 main {
-    margin-top: 100px;
+    padding-top: 50px;
     img {
         width: 300px;
     }
@@ -21,5 +29,21 @@ i.icon.coffee {
     h1 {
         align-self: center;
     }
-
 }
+
+#index-container {
+    h2 {
+        text-align: center;
+    }
+}
+
+#blog-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#right-segment {
+    margin-left: 20px;
+}
+
